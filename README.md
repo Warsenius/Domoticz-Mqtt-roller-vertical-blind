@@ -38,6 +38,6 @@ The reed switch is optional, it works as a stop limit using a tiny magnet on the
 
 ## Follow the Sun
 
-In domoticz i have set up the script "script_blinds_follow_sun_script.lua"
+In domoticz i have set up the script "[script_device_blinds_follow_sun_script.lua](https://github.com/Warsenius/Domoticz-Mqtt-roller-vertical-blind/blob/master/script_device_blinds_follow_sun_script.lua)"
 This will use the [angle of the sun](http://www.domoticz.com/wiki/Real-time_solar_data_without_any_hardware_sensor_:_azimuth,_Altitude,_Lux_sensor...) and [strenght of the sun](https://www.domoticz.com/wiki/Virtual_weather_devices) (pulled from Weather Underground) to turn the blinds.
 It also changes the angle of the blinds if the tv\pc is on and checks if the 'Lamellen Handmatig' virtual switch is on (disabling the script)
