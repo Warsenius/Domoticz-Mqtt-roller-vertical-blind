@@ -4,7 +4,7 @@ t1 = os.time()
 commandArray = {}
 
 for deviceName,deviceValue in pairs(devicechanged) do
-	if ((deviceName=='Sun Azimuth' or deviceName=='Sunscreen' or deviceName=='TV' or deviceName=='PC' or deviceName=='Lamellen Handmatig') and otherdevices['Lamellen Handmatig'] == 'Off') then
+	if ((deviceName=='Sun Azimuth' or deviceName=='Sunscreen' or deviceName=='Klungo' or deviceName=='PC' or deviceName=='Lamellen Handmatig' or deviceName=='Privacy') and otherdevices['Lamellen Handmatig'] == 'Off') then
 		sWatt = otherdevices_svalues['Zon']:match("([^;]+)")
 		sWatt = tonumber(sWatt);
 		
@@ -13,7 +13,7 @@ for deviceName,deviceValue in pairs(devicechanged) do
 		end
 			
 		function Turnblinds (target)
-			if (target > 14) then target = 14 
+			if (target > 14) then target = 15 
 			elseif (target < 1) then target = 1 end
 			
 			if (sLamellen ~= target) then 
@@ -38,7 +38,17 @@ for deviceName,deviceValue in pairs(devicechanged) do
 		--print ('LAMELLEN: ' .. 'Lammellen svalue is' .. sLamellen .. '')
 		if debug then print('LAMELLEN: ' .. 'Sun Altitude is now ' .. sAltitude .. '') end
 	    
-	    if (sAzimuth >= sBegin and sAzimuth < sMiddle) then
+		
+		if (otherdevices['Privacy'] == 'On') then 
+			if (sLamellen <= 7) then
+				print ('LAMELLEN: ' .. 2)
+				Turnblinds(2)
+			elseif (sLamellen > 7) then
+				print ('LAMELLEN: ' .. 14)
+				Turnblinds(14)
+			end
+		
+	    elseif (sAzimuth >= sBegin and sAzimuth < sMiddle) then
 			if debug then print ('LAMELLEN: Azimuth is between begin and middle, Sunscreen is ' .. otherdevices['Sunscreen'] .. ', Television is ' .. otherdevices['TV'] .. ', Sun power is ' .. sWatt) end
 			if (otherdevices['Sunscreen'] == 'Closed') then sTest = 6 else sTest = math.floor(Remap (sAzimuth, sBegin, sMiddle, 6, 1)) end
 			if (otherdevices['TV'] == 'On') then sTest = sTest -2 --als de tv aan staat doe lamellen iets meer dicht.
@@ -56,7 +66,7 @@ for deviceName,deviceValue in pairs(devicechanged) do
 			elseif (otherdevices['PC'] == 'On') then sTest = sTest +1 end --als de pc aan staat doe lamellen iets meer dicht.
 			if (sWatt < 150 and sTest > 11) then sTest = sTest -2 end --als de zon amper schijnt doe lamellen meer open
 			if (sWatt < 25 and sTest > 11) then sTest = sTest -1 end
-			if (sAltitude < 10 and sTest > 10) then sTest = sTest -2 end
+			if (sAltitude < 10 and sTest > 10) then sTest = sTest -2 end --als de hoogte van de zon heel laag is, doe lammellen meer open.
 			print ('LAMELLEN: ' .. sTest)
 			Turnblinds(sTest)
 							
