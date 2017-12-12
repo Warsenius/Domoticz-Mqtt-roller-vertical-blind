@@ -4,7 +4,7 @@ t1 = os.time()
 commandArray = {}
 
 for deviceName,deviceValue in pairs(devicechanged) do
-	if ((deviceName=='Sun Azimuth' or deviceName=='Sunscreen' or deviceName=='Klungo' or deviceName=='PC' or deviceName=='Lamellen Handmatig' or deviceName=='Privacy') and otherdevices['Lamellen Handmatig'] == 'Off') then
+	if ((deviceName=='Sun Azimuth' or deviceName=='Sunscreen' or deviceName=='TV' or deviceName=='PC' or deviceName=='Lamellen Handmatig' or deviceName=='Privacy') and otherdevices['Lamellen Handmatig'] == 'Off') then
 		sWatt = otherdevices_svalues['Zon']:match("([^;]+)")
 		sWatt = tonumber(sWatt);
 		
