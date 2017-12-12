@@ -48,7 +48,7 @@ for deviceName,deviceValue in pairs(devicechanged) do
 				Turnblinds(14)
 			end
 		
-	    elseif (sAzimuth >= sBegin and sAzimuth < sMiddle) then
+		elseif (sAzimuth >= sBegin and sAzimuth < sMiddle) then
 			if debug then print ('LAMELLEN: Azimuth is between begin and middle, Sunscreen is ' .. otherdevices['Sunscreen'] .. ', Television is ' .. otherdevices['TV'] .. ', Sun power is ' .. sWatt) end
 			if (otherdevices['Sunscreen'] == 'Closed') then sTest = 6 else sTest = math.floor(Remap (sAzimuth, sBegin, sMiddle, 6, 1)) end
 			if (otherdevices['TV'] == 'On') then sTest = sTest -2 --als de tv aan staat doe lamellen iets meer dicht.
